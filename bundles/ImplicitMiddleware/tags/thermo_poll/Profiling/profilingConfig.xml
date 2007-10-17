@@ -1,0 +1,13 @@
+<profilingConfig>
+  <machines>
+    <machine machineName="m1" description="machineOne" memory="0" speed="20" delay="1.0" throughput="0"/>
+    <machine machineName="m2" description="machineTwo" memory="0" speed="2600" delay="1.0" throughput="0"/>
+    <machine machineName="m3" description="machineThree" memory="0" speed="20" delay="1.0" throughput="0"/>
+  </machines>
+  <mappings>
+    <mapping className="vibrationSensor.VibrationSensor" machineName="m1"/>
+    <mapping className="alarmSystem.Alarm" machineName="m2"/>
+    <mapping className="temperatureSensor.TemperatureSensingTask" machineName="m3"/>
+    <mapping className="temperatureSensor.Sensor" machineName="m3"/>
+  </mappings>
+</profilingConfig>

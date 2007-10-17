@@ -1,0 +1,11 @@
+<profilingConfig>
+  <machines>
+    <machine machineName="m1" description="machineOne" memory="0" speed="2600" delay="1.0" throughput="0"/>
+    <machine machineName="m2" description="machineTwo" memory="0" speed="20" delay="1.0" throughput="0"/>
+  </machines>
+  <mappings>
+    <mapping className="org.example.Class_A" machineName="m1"/>
+    <mapping className="org.example.Class_B" machineName="m2"/>
+    <mapping className="org.example.MainClass" machineName="m1"/>
+  </mappings>
+</profilingConfig>

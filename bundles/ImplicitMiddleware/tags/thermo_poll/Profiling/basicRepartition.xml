@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <machines>
+    <m3>
+      <class name="temperatureSensor.TemperatureSensingTask" />
+      <class name="temperatureSensor.Sensor" />
+      <stub name="alarmSystem.Alarm" />
+    </m3>
+    <m1>
+      <class name="mainFrequencyControler.FrequencyControler" />
+      <class name="vibrationSensor.VibrationSensor" />
+      <class name="Starter" />
+      <class name="mainFrequencyControler.Fft" />
+      <stub name="alarmSystem.Alarm" />
+      <stub name="temperatureSensor.TemperatureSensingTask" />
+    </m1>
+    <m2>
+      <class name="alarmSystem.Alarm" />
+    </m2>
+  </machines>
+  <classes>
+    <temperatureSensor.TemperatureSensingTask machine="m3" />
+    <temperatureSensor.Sensor machine="m3" />
+    <mainFrequencyControler.FrequencyControler machine="m1" />
+    <vibrationSensor.VibrationSensor machine="m1" />
+    <Starter machine="m1" />
+    <alarmSystem.Alarm machine="m2" />
+    <mainFrequencyControler.Fft machine="m1" />
+  </classes>
+</root>
+

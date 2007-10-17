@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Thermometer" default="compile" basedir=".">
+   <property name="src.dir" location="src"/>
+   <property name="build.dir" location="build"/>
+
+
+   <!-- DO NOT DELETE NEXT LINE -->
+    <target name="-pre-compile">
+      <copy file="${src.dir}/middleware/config/Classes.class"
+            tofile="${build.dir}/middleware/config/Classes.class"/>
+      <copy file="${src.dir}/middleware/config/RemoteConfig.class"
+            tofile="${build.dir}/middleware/config/RemoteConfig.class"/>
+      <copy file="${src.dir}/middleware/config/ProtocolsConfig.class"
+            tofile="${build.dir}/middleware/config/ProtocolsConfig.class"/>
+      <copy file="${src.dir}/middleware/core/DispatcherHelper.class"
+            tofile="${build.dir}/middleware/core/DispatcherHelper.class"/>
+      <copy file="${src.dir}/middleware/transport/TransportFactory.class"
+            tofile="${build.dir}/middleware/transport/TransportFactory.class"/>
+    </target>    
+
+    <target name="compile" depends="-pre-compile">
+       <mkdir dir="${build.dir}"/>
+       <javac srcdir="${src.dir}" destdir="${build.dir}"/>
+    </target>
+
+
+    <target name="-post-compile">
+       <echo>Compile finished!</echo>
+    </target>    
+
+    <target name="clean" description="Clean all build targets">
+       <delete dir="${build.dir}"/>
+    </target>
+    
+    <target name="run" depends="compile">
+       <java classname="edu.teco.apps.sensor.SensorsMain">
+          <classpath>
+             <pathelement location="${build.dir}"/>
+          </classpath>
+       </java>
+       
+    </target>
+
+</project>

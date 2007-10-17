@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <machines>
+    <pc>
+      <class name="edu.teco.apps.thermometer.CloseHandler" />
+      <class name="edu.teco.apps.thermometer.SettingsDiag" />
+      <class name="edu.teco.apps.thermometer.ThermoCanvas" />
+      <class name="edu.teco.apps.thermometer.ThermometerMain" />
+      <class name="edu.teco.apps.thermometer.RemoteNotify" />
+      <interface name="edu.teco.apps.thermometer.TemperatureNotifiable" />
+      <stub  name="edu.teco.apps.thermometer.ThermoSensor" />
+    </pc>
+    <sunspot>
+      <class name="edu.teco.apps.thermometer.ThermoSensor" />
+      <interface name="edu.teco.apps.thermometer.TemperatureNotifiable" />
+      <stub  name="edu.teco.apps.thermometer.RemoteNotify" />
+    </sunspot>
+    <proxy>
+    </proxy>
+  </machines>
+  <classes>
+     <CloseHandler host="pc"/>
+     <SettingsDiag host="pc"/>
+     <ThermoCanvas host="pc"/>
+     <ThermometerMain host="pc"/>
+     <ThermoSensor host="sunspot"/>
+  </classes>
+</root>
+

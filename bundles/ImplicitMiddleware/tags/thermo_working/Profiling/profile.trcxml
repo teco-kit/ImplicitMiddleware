@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TRACE>
+  <node nodeId="0ea67626-f944-4847-b05f-35fa48a394d2" hostname="bilbo" ipaddress="192.168.0.21,127.0.0.1" timezone="-60" time="1167218845.283602952" />
+  <processCreate processId="" pid="3600" nodeIdRef="0ea67626-f944-4847-b05f-35fa48a394d2" time="1167218845.283602952" />
+  <agentCreate agentId="7e7d1729-0d2d-4f4a-ac05-0dff1900441b" version="1.000" processIdRef="" agentName="Java Profiling Agent" agentType="Profiler" agentParameters="server=controlled" time="1167218845.694000005" />
+  <traceStart traceId="d797e563-74e9-4e80-aace-1937e6b63c17" agentIdRef="7e7d1729-0d2d-4f4a-ac05-0dff1900441b" time="1167218846.992085218" />
+  <filter pattern="mainFrequencyControler" mode="INCLUDE" genericPattern="SUFFIX" methodPattern="" methodMode="INCLUDE" methodGenericPattern="PREFIX" />
+  <filter pattern="Starter" mode="INCLUDE" genericPattern="SUFFIX" methodPattern="" methodMode="INCLUDE" methodGenericPattern="PREFIX" />
+  <filter pattern="vibrationSensor" mode="INCLUDE" genericPattern="SUFFIX" methodPattern="" methodMode="INCLUDE" methodGenericPattern="PREFIX" />
+  <filter pattern="temperatureSensor" mode="INCLUDE" genericPattern="SUFFIX" methodPattern="" methodMode="INCLUDE" methodGenericPattern="PREFIX" />
+  <filter pattern="alarmSystem" mode="INCLUDE" genericPattern="SUFFIX" methodPattern="" methodMode="INCLUDE" methodGenericPattern="PREFIX" />
+  <filter pattern="" mode="EXCLUDE" genericPattern="PREFIX" methodPattern="" methodMode="EXCLUDE" methodGenericPattern="PREFIX" />
+  <option key="CLASS_LOAD_DETAILS" value="false" />
+  <option key="METHOD_DETAILS" value="false" />
+  <option key="COLLATION_VALUES" value="false" />
+  <option key="CONTEXT_FLOW" value="false" />
+  <option key="FILTERS" value="true" />
+  <option key="TRACK_GC_EVENT_TYPES" value="frees" />
+  <option key="ID_STYLE" value="static" />
+  <option key="OBJ_REF_MODE" value="filterOwner" />
+  <option key="METHOD_COUNTS" value="true" />
+  <option key="OBJ_ALLOC_IS_ARRAY" value="true" />
+  <option key="OPTIONS" value="true" />
+  <option key="STACK_INFORMATION" value="normal" />
+  <option key="COMPRESS" value="none" />
+  <option key="TRACE_MODE" value="full" />
+  <option key="TICKET" value="true" />
+  <option key="TIMESTAMPS" value="true" />
+  <option key="TRACE_IDREFS" value="false" />
+  <option key="UNREFERENCED_SYMBOLS" value="true" />
+  <option key="CPU_TIME" value="false" />
+  <option key="LLDATA_ENABLED" value="false" />
+  <option key="HEAP_INFO_FILE_PREFIX" value="optHeap" />
+  <option key="MONITOR_MODE" value="none" />
+  <option key="METHOD_COUNTS_ONLY" value="false" />
+  <option key="EXTENSION_LIBRARY" value="D:\Progs\eclipse\plugins\org.eclipse.hyades.probekit_4.2.100.v200609190100/os/win32/x86/ProbeAgentExtension.dll" />
+  <option key="org.eclipse.hyades.trace.ui.ATTR_SHOW_EXECUTION_FLOW" value="true" />
+  <option key="org.eclipse.hyades.trace.ui.ATTR_SHOW_EXEC_INSTANCES" value="false" />
+  <option key="org.eclipse.hyades.trace.ui.ATTR_SHOW_HEAP_INSTANCES" value="false" />
+  <option key="org.eclipse.hyades.trace.ui.type0" value="org.eclipse.tptp.analysisType.memoryHeap" />
+  <option key="org.eclipse.hyades.trace.ui.type1" value="org.eclipse.tptp.analysisType.execution" />
+  <option key="org.eclipse.hyades.trace.ui.type2" value="org.eclipse.tptp.analysisType.methodCoverage" />
+  <option key="org.eclipse.hyades.trace.ui.ATTR_FILTER_SET" value="auto_generated_filter_set" />
+  <option key="org.eclipse.hyades.trace.ui.ANALYSIS_TYPE_ASSOCIATION(org.eclipse.tptp.analysisType.memoryHeap)" value="org.eclipse.tptp.analysisType.memoryHeap" />
+  <option key="org.eclipse.hyades.trace.ui.ANALYSIS_TYPE_ASSOCIATION(org.eclipse.tptp.analysisType.execution)" value="org.eclipse.tptp.analysisType.execution" />
+  <option key="org.eclipse.hyades.trace.ui.ANALYSIS_TYPE_ASSOCIATION(org.eclipse.tptp.analysisType.methodCoverage)" value="org.eclipse.tptp.analysisType.methodCoverage" />
+  <threadStart threadId="2" time="1167218847.223278284" threadName="main" groupName="main" parentName="system" objIdRef="0" />
+  <runtimeInitDone threadIdRef="2" time="1167218847.266992568" />
+  <classDef threadIdRef="4" name="java.lang.Class" sourceName="" classId="125" time="1167218847.252226114" />
+  <objAlloc threadIdRef="4" time="1167218847.267881870" objId="612" classIdRef="125" isArray="0" size="96" />
+  <classDef threadIdRef="4" name="java.lang.Thread" sourceName="" classId="611" objIdRef="612" time="1167218847.257429599" />
+  <objAlloc threadIdRef="4" time="1167218847.267880678" objId="2627" classIdRef="611" isArray="0" size="96" />
+  <threadStart threadId="4" time="1167218847.267878532" threadName="Signal Dispatcher" groupName="system" parentName="" objIdRef="2627" />
+  <objAlloc threadIdRef="2" time="1167218847.533532381" objId="5166" classIdRef="125" isArray="0" size="96" />
+  <classDef threadIdRef="2" name="Starter" sourceName="Starter.java" classId="5165" objIdRef="5166" time="1167218847.533527135" />
+  <methodDef name="main" signature="([Ljava/lang/String;)V" startLineNumber="15" endLineNumber="20" methodId="5163" classIdRef="5165" />
+  <methodDef name="-init-" signature="()V" startLineNumber="10" endLineNumber="10" methodId="5164" classIdRef="5165" />
+  <methodEntry threadIdRef="2" time="1167218847.533515691" methodIdRef="5163" classIdRef="5165" ticket="16392" stackDepth="1" />
+  <objAlloc threadIdRef="2" time="1167218847.535304069" objId="5244" classIdRef="125" isArray="0" size="96" />
+  <classDef threadIdRef="2" name="temperatureSensor.TemperatureSensingTask" sourceName="TemperatureSensingTask.java" classId="5243" objIdRef="5244" time="1167218847.535299539" />
+  <methodDef name="run" signature="()V" startLineNumber="11" endLineNumber="25" methodId="5240" classIdRef="5243" />
+  <methodDef name="-clinit-" signature="()V" startLineNumber="8" endLineNumber="5" methodId="5241" classIdRef="5243" />
+  <methodDef name="-init-" signature="()V" startLineNumber="5" endLineNumber="5" methodId="5242" classIdRef="5243" />
+  <methodEntry threadIdRef="2" time="1167218847.535281658" methodIdRef="5241" classIdRef="5243" ticket="16572" stackDepth="2" />
+  <methodExit threadIdRef="2" methodIdRef="5241" classIdRef="5243" ticket="16572" time="1167218847.535334825" overhead="0.000047899" />
+  <objAlloc threadIdRef="2" time="1167218847.535345077" objId="5245" classIdRef="5243" isArray="0" size="40" />
+  <methodEntry threadIdRef="2" time="1167218847.535352945" methodIdRef="5242" objIdRef="5245" classIdRef="5243" ticket="16573" stackDepth="2" />
+  <methodExit threadIdRef="2" methodIdRef="5242" objIdRef="5245" classIdRef="5243" ticket="16573" time="1167218847.535380601" overhead="0.000007563" />
+  <objAlloc threadIdRef="2" time="1167218847.535629510" objId="5251" classIdRef="125" isArray="0" size="96" />
+  <classDef threadIdRef="2" name="mainFrequencyControler.FrequencyControler" sourceName="FrequencyControler.java" classId="5250" objIdRef="5251" time="1167218847.535625219" />
+  <methodDef name="run" signature="()V" startLineNumber="15" endLineNumber="41" methodId="5246" classIdRef="5250" />
+  <methodDef name="-clinit-" signature="()V" startLineNumber="6" endLineNumber="5" methodId="5247" classIdRef="5250" />
+  <methodDef name="-init-" signature="()V" startLineNumber="5" endLineNumber="5" methodId="5248" classIdRef="5250" />
+  <methodDef name="triggerAlarm" signature="()V" startLineNumber="45" endLineNumber="47" methodId="5249" classIdRef="5250" />
+  <methodEntry threadIdRef="2" time="1167218847.535599946" methodIdRef="5247" classIdRef="5250" ticket="16582" stackDepth="2" />
+  <methodExit threadIdRef="2" methodIdRef="5247" classIdRef="5250" ticket="16582" time="1167218847.535659551" overhead="0.000050980" />
+  <objAlloc threadIdRef="2" time="1167218847.535669326" objId="5252" classIdRef="5250" isArray="0" size="40" />
+  <methodEntry threadIdRef="2" time="1167218847.535677194" methodIdRef="5248" objIdRef="5252" classIdRef="5250" ticket="16583" stackDepth="2" />
+  <methodExit threadIdRef="2" methodIdRef="5248" objIdRef="5252" classIdRef="5250" ticket="16583" time="1167218847.535696506" overhead="0.000007002" />
+  <methodExit threadIdRef="2" methodIdRef="5163" classIdRef="5165" ticket="16392" time="1167218847.535736083" overhead="0.000070308" />
+  <threadEnd threadIdRef="2" time="1167218847.535772085" />
+  <objAlloc threadIdRef="5" time="1167218847.535965919" objId="5253" classIdRef="611" isArray="0" size="96" />
+  <threadStart threadId="5" time="1167218847.535964488" threadName="DestroyJavaVM" groupName="main" parentName="system" objIdRef="5253" />
+  <objAlloc threadIdRef="6" time="1167218847.536050796" objId="5218" classIdRef="125" isArray="0" size="96" />
+  <classDef threadIdRef="6" name="java.util.TimerThread" sourceName="" classId="5217" objIdRef="5218" time="1167218847.534248113" />
+  <objAlloc threadIdRef="6" time="1167218847.536049842" objId="5219" classIdRef="5217" isArray="0" size="104" />
+  <threadStart threadId="6" time="1167218847.536048173" threadName="Timer-0" groupName="main" parentName="system" objIdRef="5219" />
+  <objAlloc threadIdRef="7" time="1167218847.536179780" objId="5234" classIdRef="5217" isArray="0" size="104" />
+  <threadStart threadId="7" time="1167218847.536178112" threadName="Timer-1" groupName="main" parentName="system" objIdRef="5234" />
+  <methodEntry threadIdRef="6" time="1167218849.539660692" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="15" stackDepth="3" />
+  <methodEntry threadIdRef="7" time="1167218849.542537212" methodIdRef="5246" objIdRef="5252" classIdRef="5250" ticket="15" stackDepth="3" />
+  <objAlloc threadIdRef="6" time="1167218849.546469449" objId="5320" classIdRef="125" isArray="0" size="96" />
+  <classDef threadIdRef="6" name="temperatureSensor.Sensor" sourceName="Sensor.java" classId="5319" objIdRef="5320" time="1167218849.546463489" />
+  <methodDef name="-clinit-" signature="()V" startLineNumber="5" endLineNumber="4" methodId="5316" classIdRef="5319" />
+  <methodDef name="-init-" signature="()V" startLineNumber="4" endLineNumber="4" methodId="5317" classIdRef="5319" />
+  <methodDef name="getCurrentTemperature" signature="()D" startLineNumber="9" endLineNumber="13" methodId="5318" classIdRef="5319" />
+  <methodEntry threadIdRef="6" time="1167218849.546431064" methodIdRef="5316" classIdRef="5319" ticket="497" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="5316" classIdRef="5319" ticket="497" time="1167218849.546504974" overhead="0.000066666" />
+  <methodEntry threadIdRef="6" time="1167218849.546513795" methodIdRef="5318" classIdRef="5319" ticket="498" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="5318" classIdRef="5319" ticket="498" time="1167218849.546523809" overhead="0.000006162" />
+  <objAlloc threadIdRef="7" time="1167218849.604636669" objId="5361" classIdRef="125" isArray="0" size="96" />
+  <classDef threadIdRef="7" name="vibrationSensor.VibrationSensor" sourceName="VibrationSensor.java" classId="5360" objIdRef="5361" time="1167218849.604625463" />
+  <methodDef name="-clinit-" signature="()V" startLineNumber="8" endLineNumber="3" methodId="5356" classIdRef="5360" />
+  <methodDef name="-init-" signature="()V" startLineNumber="3" endLineNumber="3" methodId="5357" classIdRef="5360" />
+  <methodDef name="getMeasures" signature="(I)[F" startLineNumber="17" endLineNumber="31" methodId="5358" classIdRef="5360" />
+  <methodDef name="getVibrations" signature="(F)[F" startLineNumber="13" endLineNumber="13" methodId="5359" classIdRef="5360" />
+  <methodEntry threadIdRef="7" time="1167218849.604604959" methodIdRef="5356" classIdRef="5360" ticket="556" stackDepth="4" />
+  <methodExit threadIdRef="7" methodIdRef="5356" classIdRef="5360" ticket="556" time="1167218849.604677677" overhead="0.000065546" />
+  <objAlloc threadIdRef="7" time="1167218849.604688167" objId="5362" classIdRef="5360" isArray="0" size="16" />
+  <methodEntry threadIdRef="7" time="1167218849.604696512" methodIdRef="5357" objIdRef="5362" classIdRef="5360" ticket="557" stackDepth="4" />
+  <methodExit threadIdRef="7" methodIdRef="5357" objIdRef="5362" classIdRef="5360" ticket="557" time="1167218849.604709625" overhead="0.000007282" />
+  <methodEntry threadIdRef="7" time="1167218849.604718446" methodIdRef="5359" objIdRef="5362" classIdRef="5360" ticket="558" stackDepth="4" />
+  <methodEntry threadIdRef="7" time="1167218849.604727745" methodIdRef="5358" objIdRef="5362" classIdRef="5360" ticket="559" stackDepth="5" />
+  <methodExit threadIdRef="7" methodIdRef="5358" objIdRef="5362" classIdRef="5360" ticket="559" time="1167218849.631555557" overhead="0.000018767" />
+  <methodExit threadIdRef="7" methodIdRef="5359" objIdRef="5362" classIdRef="5360" ticket="558" time="1167218849.631567716" overhead="0.000006722" />
+  <methodExit threadIdRef="6" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="15" time="1167218849.682075500" overhead="0.000035854" />
+  <objAlloc threadIdRef="7" time="1167218849.727471590" objId="6079" classIdRef="125" isArray="0" size="96" />
+  <classDef threadIdRef="7" name="mainFrequencyControler.Fft" sourceName="Fft.java" classId="6078" objIdRef="6079" time="1167218849.727466106" />
+  <methodDef name="-init-" signature="()V" startLineNumber="2" endLineNumber="2" methodId="6076" classIdRef="6078" />
+  <methodDef name="complexToComplex" signature="(II[F[F)V" startLineNumber="5" endLineNumber="44" methodId="6077" classIdRef="6078" />
+  <methodEntry threadIdRef="7" time="1167218849.727447509" methodIdRef="6077" classIdRef="6078" ticket="1476" stackDepth="4" />
+  <methodExit threadIdRef="7" methodIdRef="6077" classIdRef="6078" ticket="1476" time="1167218849.746992588" overhead="0.000057422" />
+  <methodExit threadIdRef="7" methodIdRef="5246" objIdRef="5252" classIdRef="5250" ticket="15" time="1167218849.753171920" overhead="0.000045658" />
+  <methodEntry threadIdRef="6" time="1167218851.548358201" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="2925" stackDepth="3" />
+  <methodEntry threadIdRef="6" time="1167218851.548375606" methodIdRef="5318" classIdRef="5319" ticket="2926" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="5318" classIdRef="5319" ticket="2926" time="1167218851.548387289" overhead="0.000008123" />
+  <methodExit threadIdRef="6" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="2925" time="1167218851.549794912" overhead="0.000019327" />
+  <methodEntry threadIdRef="6" time="1167218853.556661128" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="3095" stackDepth="3" />
+  <methodEntry threadIdRef="6" time="1167218853.556679248" methodIdRef="5318" classIdRef="5319" ticket="3096" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="5318" classIdRef="5319" ticket="3096" time="1167218853.556690692" overhead="0.000007843" />
+  <objAlloc threadIdRef="6" time="1167218853.618567228" objId="6139" classIdRef="125" isArray="0" size="96" />
+  <classDef threadIdRef="6" name="alarmSystem.Alarm" sourceName="Alarm.java" classId="6138" objIdRef="6139" time="1167218853.618561506" />
+  <methodDef name="decrement" signature="()V" startLineNumber="26" endLineNumber="27" methodId="6131" classIdRef="6138" />
+  <methodDef name="increment" signature="()V" startLineNumber="21" endLineNumber="22" methodId="6132" classIdRef="6138" />
+  <methodDef name="-clinit-" signature="()V" startLineNumber="5" endLineNumber="3" methodId="6133" classIdRef="6138" />
+  <methodDef name="-init-" signature="()V" startLineNumber="3" endLineNumber="3" methodId="6134" classIdRef="6138" />
+  <methodDef name="signalStatus" signature="()V" startLineNumber="29" endLineNumber="43" methodId="6135" classIdRef="6138" />
+  <methodDef name="disalert" signature="()V" startLineNumber="15" endLineNumber="17" methodId="6136" classIdRef="6138" />
+  <methodDef name="alert" signature="()V" startLineNumber="9" endLineNumber="11" methodId="6137" classIdRef="6138" />
+  <methodEntry threadIdRef="6" time="1167218853.618516206" methodIdRef="6133" classIdRef="6138" ticket="3776" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="6133" classIdRef="6138" ticket="3776" time="1167218853.618618965" overhead="0.000094117" />
+  <objAlloc threadIdRef="6" time="1167218853.618629217" objId="6140" classIdRef="6138" isArray="0" size="8" />
+  <methodEntry threadIdRef="6" time="1167218853.618642091" methodIdRef="6134" objIdRef="6140" classIdRef="6138" ticket="3777" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="6134" objIdRef="6140" classIdRef="6138" ticket="3777" time="1167218853.618655443" overhead="0.000007282" />
+  <methodEntry threadIdRef="6" time="1167218853.618663311" methodIdRef="6137" objIdRef="6140" classIdRef="6138" ticket="3778" stackDepth="4" />
+  <methodEntry threadIdRef="6" time="1167218853.618670463" methodIdRef="6132" classIdRef="6138" ticket="3779" stackDepth="5" />
+  <methodExit threadIdRef="6" methodIdRef="6132" classIdRef="6138" ticket="3779" time="1167218853.618679523" overhead="0.000005882" />
+  <methodEntry threadIdRef="6" time="1167218853.618685007" methodIdRef="6135" classIdRef="6138" ticket="3780" stackDepth="5" />
+  <methodExit threadIdRef="6" methodIdRef="6135" classIdRef="6138" ticket="3780" time="1167218853.619561433" overhead="0.000009243" />
+  <methodExit threadIdRef="6" methodIdRef="6137" objIdRef="6140" classIdRef="6138" ticket="3778" time="1167218853.619568586" overhead="0.000006722" />
+  <methodExit threadIdRef="6" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="3095" time="1167218853.619575500" overhead="0.000031092" />
+  <methodEntry threadIdRef="6" time="1167218855.608447313" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="3975" stackDepth="3" />
+  <methodEntry threadIdRef="6" time="1167218855.608463764" methodIdRef="5318" classIdRef="5319" ticket="3976" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="5318" classIdRef="5319" ticket="3976" time="1167218855.608474493" overhead="0.000007563" />
+  <objAlloc threadIdRef="6" time="1167218855.610336303" objId="6148" classIdRef="6138" isArray="0" size="8" />
+  <methodEntry threadIdRef="6" time="1167218855.610345363" methodIdRef="6134" objIdRef="6148" classIdRef="6138" ticket="4134" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="6134" objIdRef="6148" classIdRef="6138" ticket="4134" time="1167218855.610355377" overhead="0.000008403" />
+  <methodEntry threadIdRef="6" time="1167218855.610374689" methodIdRef="6136" objIdRef="6148" classIdRef="6138" ticket="4135" stackDepth="4" />
+  <methodEntry threadIdRef="6" time="1167218855.610389471" methodIdRef="6131" classIdRef="6138" ticket="4136" stackDepth="5" />
+  <methodExit threadIdRef="6" methodIdRef="6131" classIdRef="6138" ticket="4136" time="1167218855.610397338" overhead="0.000006162" />
+  <methodEntry threadIdRef="6" time="1167218855.610401630" methodIdRef="6135" classIdRef="6138" ticket="4137" stackDepth="5" />
+  <methodExit threadIdRef="6" methodIdRef="6135" classIdRef="6138" ticket="4137" time="1167218855.611148357" overhead="0.000009523" />
+  <methodExit threadIdRef="6" methodIdRef="6136" objIdRef="6148" classIdRef="6138" ticket="4135" time="1167218855.611155033" overhead="0.000012605" />
+  <methodExit threadIdRef="6" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="3975" time="1167218855.611161470" overhead="0.000027170" />
+  <methodEntry threadIdRef="7" time="1167218857.562479972" methodIdRef="5246" objIdRef="5252" classIdRef="5250" ticket="2746" stackDepth="3" />
+  <objAlloc threadIdRef="7" time="1167218857.562515020" objId="6152" classIdRef="5360" isArray="0" size="16" />
+  <methodEntry threadIdRef="7" time="1167218857.562522888" methodIdRef="5357" objIdRef="6152" classIdRef="5360" ticket="2747" stackDepth="4" />
+  <methodExit threadIdRef="7" methodIdRef="5357" objIdRef="6152" classIdRef="5360" ticket="2747" time="1167218857.562533140" overhead="0.000008123" />
+  <methodEntry threadIdRef="7" time="1167218857.562537908" methodIdRef="5359" objIdRef="6152" classIdRef="5360" ticket="2748" stackDepth="4" />
+  <methodEntry threadIdRef="7" time="1167218857.563056230" methodIdRef="5358" objIdRef="6152" classIdRef="5360" ticket="2749" stackDepth="5" />
+  <methodExit threadIdRef="7" methodIdRef="5358" objIdRef="6152" classIdRef="5360" ticket="2749" time="1167218857.563574075" overhead="0.000011204" />
+  <methodExit threadIdRef="7" methodIdRef="5359" objIdRef="6152" classIdRef="5360" ticket="2748" time="1167218857.563581228" overhead="0.000006442" />
+  <methodEntry threadIdRef="7" time="1167218857.566990852" methodIdRef="6077" classIdRef="6078" ticket="3094" stackDepth="4" />
+  <methodExit threadIdRef="7" methodIdRef="6077" classIdRef="6078" ticket="3094" time="1167218857.568020343" overhead="0.000012044" />
+  <methodExit threadIdRef="7" methodIdRef="5246" objIdRef="5252" classIdRef="5250" ticket="2746" time="1167218857.574967145" overhead="0.000039775" />
+  <methodEntry threadIdRef="6" time="1167218857.612653493" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="4316" stackDepth="3" />
+  <methodEntry threadIdRef="6" time="1167218857.612669944" methodIdRef="5318" classIdRef="5319" ticket="4317" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="5318" classIdRef="5319" ticket="4317" time="1167218857.612681150" overhead="0.000008123" />
+  <methodExit threadIdRef="6" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="4316" time="1167218857.613513708" overhead="0.000017366" />
+  <methodEntry threadIdRef="6" time="1167218859.621003866" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="4486" stackDepth="3" />
+  <methodEntry threadIdRef="6" time="1167218859.621021270" methodIdRef="5318" classIdRef="5319" ticket="4487" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="5318" classIdRef="5319" ticket="4487" time="1167218859.621032714" overhead="0.000007843" />
+  <objAlloc threadIdRef="6" time="1167218859.622041702" objId="6178" classIdRef="6138" isArray="0" size="8" />
+  <methodEntry threadIdRef="6" time="1167218859.622049808" methodIdRef="6134" objIdRef="6178" classIdRef="6138" ticket="4645" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="6134" objIdRef="6178" classIdRef="6138" ticket="4645" time="1167218859.622059345" overhead="0.000007843" />
+  <methodEntry threadIdRef="6" time="1167218859.622063875" methodIdRef="6137" objIdRef="6178" classIdRef="6138" ticket="4646" stackDepth="4" />
+  <methodEntry threadIdRef="6" time="1167218859.622069597" methodIdRef="6132" classIdRef="6138" ticket="4647" stackDepth="5" />
+  <methodExit threadIdRef="6" methodIdRef="6132" classIdRef="6138" ticket="4647" time="1167218859.622077226" overhead="0.000005882" />
+  <methodEntry threadIdRef="6" time="1167218859.622081518" methodIdRef="6135" classIdRef="6138" ticket="4648" stackDepth="5" />
+  <methodExit threadIdRef="6" methodIdRef="6135" classIdRef="6138" ticket="4648" time="1167218859.623593568" overhead="0.000006722" />
+  <methodExit threadIdRef="6" methodIdRef="6137" objIdRef="6178" classIdRef="6138" ticket="4646" time="1167218859.623602151" overhead="0.000006442" />
+  <methodExit threadIdRef="6" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="4486" time="1167218859.623609066" overhead="0.000026890" />
+  <methodEntry threadIdRef="6" time="1167218861.629275560" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="4843" stackDepth="3" />
+  <methodEntry threadIdRef="6" time="1167218861.629292964" methodIdRef="5318" classIdRef="5319" ticket="4844" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="5318" classIdRef="5319" ticket="4844" time="1167218861.629304170" overhead="0.000007563" />
+  <objAlloc threadIdRef="6" time="1167218861.630131721" objId="6185" classIdRef="6138" isArray="0" size="8" />
+  <methodEntry threadIdRef="6" time="1167218861.630139589" methodIdRef="6134" objIdRef="6185" classIdRef="6138" ticket="5002" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="6134" objIdRef="6185" classIdRef="6138" ticket="5002" time="1167218861.630148649" overhead="0.000007563" />
+  <methodEntry threadIdRef="6" time="1167218861.630153179" methodIdRef="6136" objIdRef="6185" classIdRef="6138" ticket="5003" stackDepth="4" />
+  <methodEntry threadIdRef="6" time="1167218861.630158662" methodIdRef="6131" classIdRef="6138" ticket="5004" stackDepth="5" />
+  <methodExit threadIdRef="6" methodIdRef="6131" classIdRef="6138" ticket="5004" time="1167218861.630166292" overhead="0.000005882" />
+  <methodEntry threadIdRef="6" time="1167218861.630170106" methodIdRef="6135" classIdRef="6138" ticket="5005" stackDepth="5" />
+  <methodExit threadIdRef="6" methodIdRef="6135" classIdRef="6138" ticket="5005" time="1167218861.631340503" overhead="0.000006162" />
+  <methodExit threadIdRef="6" methodIdRef="6136" objIdRef="6185" classIdRef="6138" ticket="5003" time="1167218861.631347417" overhead="0.000006442" />
+  <methodExit threadIdRef="6" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="4843" time="1167218861.631353855" overhead="0.000026330" />
+  <methodEntry threadIdRef="6" time="1167218863.637855052" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="5184" stackDepth="3" />
+  <methodEntry threadIdRef="6" time="1167218863.637872934" methodIdRef="5318" classIdRef="5319" ticket="5185" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="5318" classIdRef="5319" ticket="5185" time="1167218863.637889623" overhead="0.000013165" />
+  <methodExit threadIdRef="6" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="5184" time="1167218863.638721466" overhead="0.000018487" />
+  <methodEntry threadIdRef="7" time="1167218865.587387561" methodIdRef="5246" objIdRef="5252" classIdRef="5250" ticket="4364" stackDepth="3" />
+  <objAlloc threadIdRef="7" time="1167218865.587420940" objId="6192" classIdRef="5360" isArray="0" size="16" />
+  <methodEntry threadIdRef="7" time="1167218865.587443351" methodIdRef="5357" objIdRef="6192" classIdRef="5360" ticket="4365" stackDepth="4" />
+  <methodExit threadIdRef="7" methodIdRef="5357" objIdRef="6192" classIdRef="5360" ticket="4365" time="1167218865.587454319" overhead="0.000008683" />
+  <methodEntry threadIdRef="7" time="1167218865.587465763" methodIdRef="5359" objIdRef="6192" classIdRef="5360" ticket="4366" stackDepth="4" />
+  <methodEntry threadIdRef="7" time="1167218865.587474107" methodIdRef="5358" objIdRef="6192" classIdRef="5360" ticket="4367" stackDepth="5" />
+  <methodExit threadIdRef="7" methodIdRef="5358" objIdRef="6192" classIdRef="5360" ticket="4367" time="1167218865.587965965" overhead="0.000008963" />
+  <methodExit threadIdRef="7" methodIdRef="5359" objIdRef="6192" classIdRef="5360" ticket="4366" time="1167218865.587973117" overhead="0.000007002" />
+  <methodEntry threadIdRef="7" time="1167218865.590058803" methodIdRef="6077" classIdRef="6078" ticket="4712" stackDepth="4" />
+  <methodExit threadIdRef="7" methodIdRef="6077" classIdRef="6078" ticket="4712" time="1167218865.590997457" overhead="0.000007843" />
+  <methodEntry threadIdRef="7" time="1167218865.593357324" methodIdRef="5249" classIdRef="5250" ticket="5094" stackDepth="4" />
+  <objAlloc threadIdRef="7" time="1167218865.594222784" objId="6213" classIdRef="6138" isArray="0" size="8" />
+  <methodEntry threadIdRef="7" time="1167218865.594234466" methodIdRef="6134" objIdRef="6213" classIdRef="6138" ticket="5284" stackDepth="5" />
+  <methodExit threadIdRef="7" methodIdRef="6134" objIdRef="6213" classIdRef="6138" ticket="5284" time="1167218865.594243288" overhead="0.000007563" />
+  <methodEntry threadIdRef="7" time="1167218865.594250202" methodIdRef="6137" objIdRef="6213" classIdRef="6138" ticket="5285" stackDepth="5" />
+  <methodEntry threadIdRef="7" time="1167218865.594256162" methodIdRef="6132" classIdRef="6138" ticket="5286" stackDepth="6" />
+  <methodExit threadIdRef="7" methodIdRef="6132" classIdRef="6138" ticket="5286" time="1167218865.594264030" overhead="0.000005882" />
+  <methodEntry threadIdRef="7" time="1167218865.594268321" methodIdRef="6135" classIdRef="6138" ticket="5287" stackDepth="6" />
+  <methodExit threadIdRef="7" methodIdRef="6135" classIdRef="6138" ticket="5287" time="1167218865.595069646" overhead="0.000005882" />
+  <methodExit threadIdRef="7" methodIdRef="6137" objIdRef="6213" classIdRef="6138" ticket="5285" time="1167218865.595076084" overhead="0.000006722" />
+  <methodExit threadIdRef="7" methodIdRef="5249" classIdRef="5250" ticket="5094" time="1167218865.595081806" overhead="0.000018767" />
+  <methodExit threadIdRef="7" methodIdRef="5246" objIdRef="5252" classIdRef="5250" ticket="4364" time="1167218865.600272417" overhead="0.000038095" />
+  <methodEntry threadIdRef="6" time="1167218865.657179117" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="5354" stackDepth="3" />
+  <methodEntry threadIdRef="6" time="1167218865.657202720" methodIdRef="5318" classIdRef="5319" ticket="5355" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="5318" classIdRef="5319" ticket="5355" time="1167218865.657213449" overhead="0.000007282" />
+  <objAlloc threadIdRef="6" time="1167218865.658021926" objId="6220" classIdRef="6138" isArray="0" size="8" />
+  <methodEntry threadIdRef="6" time="1167218865.658029079" methodIdRef="6134" objIdRef="6220" classIdRef="6138" ticket="5513" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="6134" objIdRef="6220" classIdRef="6138" ticket="5513" time="1167218865.658037900" overhead="0.000007282" />
+  <methodEntry threadIdRef="6" time="1167218865.658042430" methodIdRef="6137" objIdRef="6220" classIdRef="6138" ticket="5514" stackDepth="4" />
+  <methodEntry threadIdRef="6" time="1167218865.658048391" methodIdRef="6132" classIdRef="6138" ticket="5515" stackDepth="5" />
+  <methodExit threadIdRef="6" methodIdRef="6132" classIdRef="6138" ticket="5515" time="1167218865.658056020" overhead="0.000006162" />
+  <methodEntry threadIdRef="6" time="1167218865.658060073" methodIdRef="6135" classIdRef="6138" ticket="5516" stackDepth="5" />
+  <methodExit threadIdRef="6" methodIdRef="6135" classIdRef="6138" ticket="5516" time="1167218865.658853769" overhead="0.000009243" />
+  <methodExit threadIdRef="6" methodIdRef="6137" objIdRef="6220" classIdRef="6138" ticket="5514" time="1167218865.658860445" overhead="0.000006442" />
+  <methodExit threadIdRef="6" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="5354" time="1167218865.658866882" overhead="0.000032212" />
+  <methodEntry threadIdRef="6" time="1167218867.663879632" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="5707" stackDepth="3" />
+  <methodEntry threadIdRef="6" time="1167218867.663896560" methodIdRef="5318" classIdRef="5319" ticket="5708" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="5318" classIdRef="5319" ticket="5708" time="1167218867.663907766" overhead="0.000007843" />
+  <objAlloc threadIdRef="6" time="1167218867.664734840" objId="6228" classIdRef="6138" isArray="0" size="8" />
+  <methodEntry threadIdRef="6" time="1167218867.664742708" methodIdRef="6134" objIdRef="6228" classIdRef="6138" ticket="5866" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="6134" objIdRef="6228" classIdRef="6138" ticket="5866" time="1167218867.664752244" overhead="0.000007843" />
+  <methodEntry threadIdRef="6" time="1167218867.664756774" methodIdRef="6136" objIdRef="6228" classIdRef="6138" ticket="5867" stackDepth="4" />
+  <methodEntry threadIdRef="6" time="1167218867.664762258" methodIdRef="6131" classIdRef="6138" ticket="5868" stackDepth="5" />
+  <methodExit threadIdRef="6" methodIdRef="6131" classIdRef="6138" ticket="5868" time="1167218867.664769887" overhead="0.000005882" />
+  <methodEntry threadIdRef="6" time="1167218867.664773941" methodIdRef="6135" classIdRef="6138" ticket="5869" stackDepth="5" />
+  <methodExit threadIdRef="6" methodIdRef="6135" classIdRef="6138" ticket="5869" time="1167218867.665721654" overhead="0.000006442" />
+  <methodExit threadIdRef="6" methodIdRef="6136" objIdRef="6228" classIdRef="6138" ticket="5867" time="1167218867.665729761" overhead="0.000006442" />
+  <methodExit threadIdRef="6" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="5707" time="1167218867.665736198" overhead="0.000025490" />
+  <methodEntry threadIdRef="6" time="1167218869.673158645" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="6064" stackDepth="3" />
+  <methodEntry threadIdRef="6" time="1167218869.673175334" methodIdRef="5318" classIdRef="5319" ticket="6065" stackDepth="4" />
+  <methodExit threadIdRef="6" methodIdRef="5318" classIdRef="5319" ticket="6065" time="1167218869.673186063" overhead="0.000007563" />
+  <methodExit threadIdRef="6" methodIdRef="5240" objIdRef="5245" classIdRef="5243" ticket="6064" time="1167218869.674011945" overhead="0.000017927" />
+</TRACE>
+

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hosts>
+   <m2>
+      <transport.sunspot.SunSpotConnection
+         MAC="0014.4F01.0000.0A47" port="103" />
+   </m2>
+</hosts>
+
