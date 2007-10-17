@@ -1,7 +1,3 @@
-/************************************
- * Copyright TECO (www.teco.edu)    *
- * @author Dimitar Yordanov         *
- ************************************/
 package middleware.core;
 
 public class ByteStack {
@@ -257,6 +253,7 @@ public class ByteStack {
     */
    public float popFloat() {
       return (Float.intBitsToFloat(popInt()));
+
    }
 
    /**

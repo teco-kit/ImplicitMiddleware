@@ -1,7 +1,3 @@
-/************************************
- * Copyright TECO (www.teco.edu)    *
- * @author Dimitar Yordanov         *
- ************************************/
 package generator;
 
 import java.io.FileOutputStream;
@@ -17,7 +13,7 @@ public class HostProtocolsConfig {
    private static final String instanceField  = "instance";
    private              ClassWriter writer    =  null;
 
-   public HostProtocolsConfig(String inputXML, Short host)
+   public HostProtocolsConfig(String inputXML)
    {
       Config confFile = new Config(inputXML);
 
@@ -30,16 +26,9 @@ public class HostProtocolsConfig {
       MethodVisitor constr = visitor.getConstructor();
   
       constr.visitVarInsn(Opcodes.ALOAD, 0);
-      
-      constr.visitTypeInsn(Opcodes.NEW, "java/lang/Short");
-      constr.visitInsn(Opcodes.DUP);
-      constr.visitIntInsn(Opcodes.BIPUSH, host);
-      constr.visitMethodInsn(Opcodes.INVOKESPECIAL, 
-                             "java/lang/Short", "<init>", 
-                             "(S)V");
-
+      constr.visitLdcInsn(confFile.getHostname());
       constr.visitFieldInsn(Opcodes.PUTFIELD, className, hostName,
-                            "Ljava/lang/Short;");
+                            "Ljava/lang/String;");
       
       writer.visitField(Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC,
                         instanceField,
@@ -48,7 +37,7 @@ public class HostProtocolsConfig {
 
       writer.visitField(Opcodes.ACC_PRIVATE,
                         hostName,
-                        "Ljava/lang/Short;",
+                        "Ljava/lang/String;",
                         null, null).visitEnd();
 
       visitGetInstance();
@@ -60,6 +49,7 @@ public class HostProtocolsConfig {
 
    private void visitGetInstance()
    {
+
       MethodVisitor mv =
          writer.visitMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC,
                             "getInstance",
@@ -94,14 +84,14 @@ public class HostProtocolsConfig {
       MethodVisitor mv =
          writer.visitMethod(Opcodes.ACC_PUBLIC,
                             "getHostname",
-                            "()Ljava/lang/Short;",
+                            "()Ljava/lang/String;",
                             null, null);
       mv.visitCode();
       mv.visitVarInsn(Opcodes.ALOAD, 0);
       mv.visitFieldInsn(Opcodes.GETFIELD,
                         className,
                         hostName,
-                        "Ljava/lang/Short;");
+                        "Ljava/lang/String;");
 
       mv.visitInsn(Opcodes.ARETURN);
       mv.visitMaxs(0,0);

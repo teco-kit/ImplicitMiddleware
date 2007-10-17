@@ -8,10 +8,10 @@ public class Classes
     private Classes()
     {
        class2Host = new Hashtable();
-       class2Host.put(new Integer(1), new Short((short)1));
+       class2Host.put(new Integer(1), new String("Afrodita"));
     }
 
-    public Short getHost(String className)
+    public String getHost(String className)
     {
         return null;
     }
@@ -21,7 +21,7 @@ public class Classes
         return 0;
     }
     
-    public static Classes getInstance()
+    static public Classes getInstance()
     {
     	return null;
     }

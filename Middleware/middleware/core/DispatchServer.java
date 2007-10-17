@@ -1,7 +1,3 @@
-/************************************
- * Copyright TECO (www.teco.edu)    *
- * @author Dimitar Yordanov         *
- ************************************/
 package middleware.core;
 
 import java.util.Hashtable;
@@ -36,8 +32,8 @@ public class DispatchServer implements Runnable
       }
    }
 
-   private String      transport;
-   private String      attributes[];
+   private String   transport;
+   private String[] attributes;
    private SendReceive conn;
 
    public DispatchServer(String transport, String[] attributes) {
@@ -58,25 +54,23 @@ public class DispatchServer implements Runnable
             if (msg == null)
             	continue;
             Debug.print("INFO: new connection opened by client");
-            
-            // address and remoteHost refer to different 
-            // machines if we use a proxy
-            String address    = msg.popString();
-            msg.popShort(); //local address
-            Short  remoteHost = new Short(msg.popShort());
 
-            Thread t = new Thread(new Dispatcher(msg, address, remoteHost, conn));
+            Thread t = new Thread(new Dispatcher(msg, msg.popString(), this));
             t.start();
 
          } catch (NullPointerException e) {
             //conn = serverSocket.startListening();
-            System.err.println("Connection was reset by client peer1.");
+        	 System.err.println("Connection was reset by client peer1.");
             continue;
          } catch (Exception e) {
             System.err.println("Connection was reset by client peer.");
             e.printStackTrace();
          }
       }
+   }
+   // monitor
+   public synchronized void send(ByteStack stack, String address) {
+	   conn.send(stack, address);
    }
 }
 

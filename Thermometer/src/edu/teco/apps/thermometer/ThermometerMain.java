@@ -1,7 +1,3 @@
-/************************************
- * Copyright TECO (www.teco.edu)    *
- * @author Dimitar Yordanov         *
- ************************************/
 package edu.teco.apps.thermometer;
 
 import java.awt.BorderLayout;
@@ -69,14 +65,8 @@ public class ThermometerMain extends Frame implements TemperatureNotifiable {
    private Menu              fMenu            = null;
    //private Menu              hMenu            = null;
    private Dialog            settingsDiag     = null;
-   //private Label tempLabel;
    
    public ThermometerMain () {
-      //System.setSecurityManager(new ExitHandlingSecurityManager());
-	  
-      //tempLabel =  new Label("Temperatur ", 0);
-	  //this.add(tempLabel);
-
       mBar            = new MenuBar();
       fMenu           = new Menu("File");
       MenuListener mL = new MenuListener();
@@ -101,8 +91,6 @@ public class ThermometerMain extends Frame implements TemperatureNotifiable {
    
    public void setTemp(int grad) {
       canvas.setTemp(grad);
-      // tempLabel.setText((new StringBuilder()).append(grad).append(" Celsius").toString());
-
    }
    
    class MenuListener implements ActionListener {
@@ -125,13 +113,4 @@ public class ThermometerMain extends Frame implements TemperatureNotifiable {
          }
       } 
    }
-   
-   class ExitHandlingSecurityManager extends SecurityManager {
-	   
-		@Override
-		public void checkExit(int arg0) {
-			//throw new SecurityException("You aren't allowed to terminate VM");
-		}
-		
-	}
 }

@@ -3,7 +3,7 @@ package middleware.config;
 import java.util.Hashtable;
 
 /**
- * Dummy Class
+ * Dummy
  */
 public class RemoteConfig {
    private static RemoteConfig instance = null;
@@ -15,11 +15,11 @@ public class RemoteConfig {
       return instance;
    }
 
-   public String getTransportName(Short hostname) {
+   public String getTransportName(String hostname) {
       return (String)transportProtocol.get(hostname);
    }
 
-   public String[] getTransportAttributes(Short hostname) {
+   public String[] getTransportAttributes(String hostname) {
       return (String[])transportAttributes.get(hostname);
    }
 }

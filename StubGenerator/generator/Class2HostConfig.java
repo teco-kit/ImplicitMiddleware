@@ -1,7 +1,3 @@
-/************************************
- * Copyright TECO (www.teco.edu)    *
- * @author Dimitar Yordanov         *
- ************************************/
 package generator;
 
 import java.io.FileOutputStream;
@@ -10,18 +6,18 @@ import org.objectweb.asm.*;
 
 public class Class2HostConfig {
 
-   private static final String      hashtableClass = "java/util/Hashtable";
-   private static final String      className      = "middleware/config/Classes";
-   private static final String      fieldHost      = "class2Host";
-   private static final String      fieldClassId   = "class2classId";
-   private static final String      instanceField  = "instance";
-   private              ClassWriter writer         =  null;
+   private static final String        hashtableClass = "java/util/Hashtable";
+   private static final String        className      = "middleware/config/Classes";
+   private static final String        fieldHost      = "class2Host";
+   private static final String        fieldClassId   = "class2classId";
+   private static final String        instanceField  = "instance";
+   private              ClassWriter   writer         =  null;
 
    public Class2HostConfig(Hashtable class2Host, Hashtable classIds)
    {
       HashtableVisitor visitor =
          new HashtableVisitor(className, Opcodes.ACC_PRIVATE);
-      visitor.visitHashtable(class2Host, fieldHost, "String", "short");
+      visitor.visitHashtable(class2Host, fieldHost, "String", "String");
       visitor.visitHashtable(classIds, fieldClassId, "String", "int");
       writer = visitor.getClassWriter();
 
@@ -74,7 +70,7 @@ public class Class2HostConfig {
       MethodVisitor mv =
          writer.visitMethod(Opcodes.ACC_PUBLIC,
                             "getHost",
-                            "(Ljava/lang/String;)Ljava/lang/Short;",
+                            "(Ljava/lang/String;)Ljava/lang/String;",
                             null, null);
       mv.visitCode();
 
@@ -90,7 +86,7 @@ public class Class2HostConfig {
                          hashtableClass,
                          "get",
                          "(Ljava/lang/Object;)Ljava/lang/Object;");
-      mv.visitTypeInsn(Opcodes.CHECKCAST, "java/lang/Short");
+      mv.visitTypeInsn(Opcodes.CHECKCAST, "java/lang/String");
 
       mv.visitInsn(Opcodes.ARETURN);
       mv.visitMaxs(0,0);

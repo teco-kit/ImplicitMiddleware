@@ -1,20 +1,9 @@
-/************************************
- * Copyright TECO (www.teco.edu)    *
- * @author Dimitar Yordanov         *
- ************************************/
 package generator;
 
 import java.io.FileOutputStream;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Hashtable;
+import org.objectweb.asm.*;
 
 import middleware.config.Hosts;
-
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
 
 public class RemoteHostsConfig {
 
@@ -25,36 +14,16 @@ public class RemoteHostsConfig {
    private static final String instanceField  = "instance";
    private              ClassWriter writer    =  null;
 
-   public RemoteHostsConfig(String inputXML, 
-		                    HashMap<String, Short> machName2machId)
+   public RemoteHostsConfig(String inputXML)
    {
       Hosts confFile = new Hosts(inputXML);
 
       HashtableVisitor visitor =
          new HashtableVisitor(className, Opcodes.ACC_PRIVATE);
-      
-      Hashtable<Short, String> tProto     = new Hashtable<Short, String>();
-      Hashtable<String, String> tProtoStr = confFile.getTransportProtocol();
-      Enumeration<String> enumer  = tProtoStr.keys();
-      
-      while (enumer.hasMoreElements()) {
-    	  String  mName = (String)enumer.nextElement();
-    	  tProto.put(machName2machId.get(mName), tProtoStr.get(mName));
-      }
-      
-      Hashtable<Short, String[]>  tAttr    = new Hashtable<Short, String[]>();
-      Hashtable<String, String[]> tAttrStr = confFile.getTransportAttributes();
-      Enumeration<String> enumerAttr       = tProtoStr.keys();
-      
-      while (enumerAttr.hasMoreElements()) {
-    	  String  mName = (String)enumerAttr.nextElement();
-    	  tAttr.put(machName2machId.get(mName), tAttrStr.get(mName));
-      }
-      
-      visitor.visitHashtable(tProto, transProt,
-                             "short", "String");
-      visitor.visitHashtable(tAttr, transAttr,
-                             "short", "String[]");
+      visitor.visitHashtable(confFile.getTransportProtocol()  , transProt,
+                             "String", "String");
+      visitor.visitHashtable(confFile.getTransportAttributes(), transAttr,
+                             "String", "String[]");
       writer = visitor.getClassWriter();
 
       writer.visitField(Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC,
@@ -106,7 +75,7 @@ public class RemoteHostsConfig {
       MethodVisitor mv =
          writer.visitMethod(Opcodes.ACC_PUBLIC, 
                             "getTransportName", 
-                            "(Ljava/lang/Short;)Ljava/lang/String;",
+                            "(Ljava/lang/String;)Ljava/lang/String;",
                             null, null);
       mv.visitCode();
       mv.visitVarInsn(Opcodes.ALOAD, 0);
@@ -128,10 +97,11 @@ public class RemoteHostsConfig {
 
    private void visitGetTransportAttributes()
    {
+
       MethodVisitor mv =
          writer.visitMethod(Opcodes.ACC_PUBLIC, 
                         "getTransportAttributes", 
-                        "(Ljava/lang/Short;)[Ljava/lang/String;",
+                        "(Ljava/lang/String;)[Ljava/lang/String;",
                         null, null);
       mv.visitCode();
       mv.visitVarInsn(Opcodes.ALOAD, 0);

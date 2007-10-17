@@ -15,8 +15,6 @@
       <interface name="edu.teco.apps.thermometer.TemperatureNotifiable" />
       <stub  name="edu.teco.apps.thermometer.RemoteNotify" />
     </sunspot>
-    <proxy>
-    </proxy>
   </machines>
   <classes>
      <CloseHandler host="pc"/>

@@ -1,36 +1,35 @@
 package middleware.config;
 
-import helper.JDOMhelper;
-
 import java.io.File;
 import java.util.Hashtable;
 import java.util.Iterator;
 
+import middleware.helper.JDOMhelper;
 
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
 public class Hosts {
-   private        Hashtable<String, String[]> transportAttributes;
-   private        Hashtable<String, String> transportProtocol;
-   private static String inputFile = "hosts.xml";
+   private        Hashtable transportAttributes; // <String, String[]>
+   private        Hashtable transportProtocol;   // <String, String>
+   private static String    inputFile = "hosts.xml";
    
    public Hosts()
    {
-      transportAttributes = new Hashtable<String, String[]>();
-      transportProtocol   = new Hashtable<String, String>();
+      transportAttributes = new Hashtable();
+      transportProtocol   = new Hashtable();
       readConfiguration();
    }
    
    public Hosts(String file)
    {
       inputFile           = file;
-      transportAttributes = new Hashtable<String, String[]>();
-      transportProtocol   = new Hashtable<String, String>();
+      transportAttributes = new Hashtable();
+      transportProtocol   = new Hashtable();
       readConfiguration();
    }
    
-   public Hashtable<String, String> getTransportProtocol() {
+   public Hashtable getTransportProtocol() {
       return transportProtocol;
    }
 
@@ -38,13 +37,15 @@ public class Hosts {
       return (String)transportProtocol.get(hostname);
    }
 
-   public Hashtable<String, String[]> getTransportAttributes() {
+   public Hashtable getTransportAttributes() {
       return transportAttributes;
    }
 
    public String[] getTransportAttributes(String hostname) {
       return (String[])transportAttributes.get(hostname);
    }
+
+
 
    private void readConfiguration() 
    {

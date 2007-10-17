@@ -1,24 +1,15 @@
-/************************************
- * Copyright TECO (www.teco.edu)    *
- * @author Dimitar Yordanov         *
- ************************************/
 package middleware.core;
 
 import middleware.config.Classes;
-import middleware.config.ProtocolsConfig;
-import middleware.helper.Debug;
 import middleware.transport.SendReceive;
+import middleware.helper.Debug;
 
 public class MethodCallStub {
    private static ObjectHeap objHeap     = ObjectHeap.getInstance();
-   private Short             remotePeer  = null;
-   private Short             localPeer   = null;
+   private String            remotePeer  = null;
    private SendReceive       socket      = null;
    private ConnectionManager connManager = null;
    private int               classId     = 0;
-   private Object            lock        = new Object();
-   private ByteStack         retStack    = null;
-   private boolean           waitForMe   = false;
 
    /**
     * Constructor
@@ -26,35 +17,15 @@ public class MethodCallStub {
     */
    public MethodCallStub(String className)
    {
-	  remotePeer   = Classes.getInstance().getHost(className);
-	  localPeer    = ProtocolsConfig.getInstance().getHostname();
+	   Debug.print("mstub className " + className);
+      remotePeer   = Classes.getInstance().getHost(className);
+	   Debug.print("mstub ch1 " + Thread.currentThread().toString());
       connManager  = ConnectionManager.getInstance();
+	   Debug.print("mstub ch2");
       socket       = connManager.getConnection(remotePeer);
+      Debug.print("mstub ch2");
       this.classId = Classes.getInstance().getClassId(className);
-      Debug.print("mstub classId " + classId   + 
-    		      " className "    + className + 
-    		      " remote peer "  + remotePeer);
-      StubServer stubServer = new StubServer();
-      Thread t1 = new Thread(stubServer);
-      t1.start();
-   }
-   
-   private class StubServer implements Runnable {   
-	   public void run() {
-		  // while (true)
-		  // {   
-			   retStack = socket.receive();
-			   retStack.popShort(); // localHost
-			   retStack.popShort(); // remoteHost
-			   System.err.println("Stub Server Receive");
-			   while(waitForMe) {
-				   synchronized(lock) {
-					   lock.notify();
-				   }
-			   }
-			   System.err.println("Stub After Receive");
-		 //  }
-	   } 
+      Debug.print("mstub ch3 classId " + classId + " className " + className);
    }
 
    /**
@@ -74,26 +45,16 @@ public class MethodCallStub {
          stack = new ByteStack(32);
       
       stack.pushInt(methodId);
+      Debug.print("method id " + methodId);
       stack.pushInt(objectId);
+      Debug.print("objectId " + objectId);
       stack.pushInt(classId);
-      stack.pushShort(localPeer.shortValue());
-      stack.pushShort(remotePeer.shortValue());
-      waitForMe = true;
+      Debug.print("class id " + classId);
       socket.send(stack);
 
       Debug.print("Waiting for aswer");
       
-      ByteStack returnStack = null;// = socket.receive();
-      synchronized(lock) {
-    	  try {
-    		  lock.wait();
-    		  waitForMe = false;
-    		  returnStack = retStack;
-    	  } catch (InterruptedException e) {
-    		  // TODO Auto-generated catch block
-    		  e.printStackTrace();
-    	  }
-      }
+      ByteStack returnStack = socket.receive();
       Debug.print("retStack len " + returnStack.getByteArraySize());
       //FIXME call decrement somewhere
       //connManager.decrement(remotePeer, socket);
