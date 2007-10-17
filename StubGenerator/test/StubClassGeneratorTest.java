@@ -1,10 +1,8 @@
 package test;
 
+import junit.framework.TestCase;
 import java.io.File;
 import java.util.Date;
-import java.util.Vector;
-
-import junit.framework.TestCase;
 
 import org.junit.Assert;
 
@@ -15,14 +13,10 @@ public class StubClassGeneratorTest extends TestCase {
 
       File     f           = new File("test/Class_B.class");
       String[] inOutStrArr = {f.getAbsolutePath()};
-      Vector<String> stubClasses = new Vector<String>();
-      stubClasses.addElement("test/Class_B");
 
       generator.ClassGenerator.Main( inOutStrArr,
                                      inOutStrArr,
-                                     "test/MethodCallStubWrapper",
-                                     stubClasses
-                                   );
+                                     "test/MethodCallStubWrapper");
    }
 
    protected void tearDown() throws Exception {

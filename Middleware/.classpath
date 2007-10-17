@@ -5,6 +5,5 @@
 	<classpathentry kind="lib" path="C:/workspace/libs/spotlib_device.jar"/>
 	<classpathentry kind="lib" path="C:/workspace/libs/junit-4.4.jar"/>
 	<classpathentry kind="lib" path="C:/workspace/libs/squawk_rt.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

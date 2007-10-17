@@ -1,7 +1,3 @@
-/************************************
- * Copyright TECO (www.teco.edu)    *
- * @author Dimitar Yordanov         *
- ************************************/
 package generator;
 
 import java.io.FileOutputStream;
@@ -75,16 +71,7 @@ public class HashtableVisitor {
             constructor.visitTypeInsn(Opcodes.NEW, "java/lang/Integer");
             constructor.visitInsn(Opcodes.DUP);
             constructor.visitIntInsn(Opcodes.BIPUSH, (Integer)key);
-            constructor.visitMethodInsn(Opcodes.INVOKESPECIAL, 
-            		                    "java/lang/Integer", "<init>", "(I)V");
-         }
-         else if (keyType == "short")
-         {
-            constructor.visitTypeInsn(Opcodes.NEW, "java/lang/Short");
-            constructor.visitInsn(Opcodes.DUP);
-            constructor.visitIntInsn(Opcodes.BIPUSH, (Short)key);
-            constructor.visitMethodInsn(Opcodes.INVOKESPECIAL, 
-            		                    "java/lang/Short", "<init>", "(S)V");
+            constructor.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/Integer", "<init>", "(I)V");
          }
          else
             return;
@@ -117,15 +104,6 @@ public class HashtableVisitor {
             constructor.visitMethodInsn(Opcodes.INVOKESPECIAL, 
                                   "java/lang/Integer", "<init>", 
                                   "(I)V");
-         }
-         else if (valueType == "short")
-         {
-            constructor.visitTypeInsn(Opcodes.NEW, "java/lang/Short");
-            constructor.visitInsn(Opcodes.DUP);
-            constructor.visitIntInsn(Opcodes.BIPUSH, (Short)table.get(key));
-            constructor.visitMethodInsn(Opcodes.INVOKESPECIAL, 
-                                        "java/lang/Short", "<init>", 
-                                        "(S)V");
          }
          else
             return;

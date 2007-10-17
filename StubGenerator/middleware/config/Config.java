@@ -1,12 +1,11 @@
 package middleware.config;
 
-import helper.JDOMhelper;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Iterator;
 
+import middleware.helper.JDOMhelper;
 
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -21,22 +20,23 @@ import org.jdom.input.SAXBuilder;
  *
  */
 public class Config {
+   private static Config instance  = null;
    private static String inputFile = "config.xml";
-   private String                      hostname  = "";
-   private Element                     config    = null;
-   private Element                     transport = null;
-   private Hashtable<String, String[]> protocols = null; 
+   private String        hostname  = "";
+   private Element       config    = null;
+   private Element       transport = null;
+   private Hashtable     protocols = null; 
 
    public Config()
    {
-      protocols = new Hashtable<String, String[]>();
+      protocols = new Hashtable();
       readConfiguration();
    }
    
    public Config(String file)
    {
       inputFile = file;
-      protocols = new Hashtable<String, String[]>();
+      protocols = new Hashtable();
       readConfiguration();
    }
 
@@ -72,7 +72,7 @@ public class Config {
       return hostname;
    }
 
-   public Hashtable<String, String[]> getProtocols() {
+   public Hashtable getProtocols() {
       return protocols;
    }
 

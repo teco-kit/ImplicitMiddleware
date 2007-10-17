@@ -1,36 +1,24 @@
-/************************************
- * Copyright TECO (www.teco.edu)    *
- * @author Dimitar Yordanov         *
- ************************************/
 package middleware.core;
 
-import middleware.config.ProtocolsConfig;
 import middleware.helper.Debug;
-import middleware.transport.SendReceive;
 
 public class Dispatcher implements Runnable {
 
-   private ByteStack         msg         = null;
-   private DispatcherHelper  dispHelper  = null;
-   private ObjectHeap        objHeap     = null;
-   private SendReceive       conn        = null;
-   private String            address     = null;
-   private Short             remoteHost  = null;
-   private Short             localHost   = null;
+   ByteStack         msg         = null;
+   DispatcherHelper  dispHelper  = null;
+   ObjectHeap        objHeap     = null;
+   DispatchServer    server      = null;
+   private String address        = null;
 
+   Dispatcher() {
+   }
 
-   public Dispatcher(ByteStack      receivedMsg, 
-                     String         address, 
-                     Short          remoteHost, 
-                     SendReceive    conn) 
-   {
+   Dispatcher(ByteStack receivedMsg, String address, DispatchServer server) {
       this.msg         = receivedMsg;
       this.address     = address;
-      this.remoteHost  = remoteHost;
-      this.conn        = conn;
+      this.server      = server;
       this.dispHelper  = new DispatcherHelper();
       this.objHeap     = ObjectHeap.getInstance();
-	  localHost        = ProtocolsConfig.getInstance().getHostname();
    }
 
    public void run() {
@@ -42,28 +30,27 @@ public class Dispatcher implements Runnable {
       ByteStack returnStack = null;
 
       int classId = stack.popInt();
+      Debug.print("Dispatch Classid " + classId);
       Object obj  = null;
       int objId   = stack.popInt();
-      
+      Debug.print("Dispatch objid b " + objId);
       if (objId != 0)
-         obj  = objHeap.getObject(objId);
-
-      returnStack =
-         dispHelper.methodCall(classId, obj, stack.popInt(), stack);
+    	  obj  = objHeap.getObject(objId);
+      Debug.print("Dispatch objid a " + objId );
+      returnStack = 
+    	  dispHelper.methodCall(classId, obj, stack.popInt(), stack);
       if (returnStack == null)
       {
          // send some dummy byte
+         Debug.print("Dummy byte sent ");
          returnStack = new ByteStack(1);
-         returnStack.pushByte((byte)0);
+         returnStack.pushInt(0);
       }
-
+      
       Debug.print("Dispatch answer len " + returnStack.getByteArraySize() );
-      Debug.print("Dispatch remote host " + remoteHost );
+ 
+      server.send( returnStack, address );
 
-      returnStack.pushShort(localHost.shortValue());
-      returnStack.pushShort(remoteHost.shortValue());
-      Debug.print("Dispatcher address " + address);
-      conn.send( returnStack, address );
    }
 }
 /* vim: set expandtab tabstop=3 shiftwidth=3 softtabstop=3: */

@@ -22,7 +22,7 @@ public class HostProtocolsConfigTest extends TestCase {
 
    public void testIt() {
 
-      HostProtocolsConfig config = new HostProtocolsConfig("config.xml", new Short((short)1));
+      HostProtocolsConfig config = new HostProtocolsConfig("config.xml");
 
       config.writeClassToFile("../Middleware/middleware/config/ProtocolsConfig.class");
 

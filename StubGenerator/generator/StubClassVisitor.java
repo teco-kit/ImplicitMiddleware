@@ -1,7 +1,3 @@
-/************************************
- * Copyright TECO (www.teco.edu)    *
- * @author Dimitar Yordanov         *
- ************************************/
 package generator;
 
 import org.objectweb.asm.*;
@@ -321,6 +317,14 @@ public class StubClassVisitor extends ClassAdapter {
             constr.visitMethodInsn(Opcodes.INVOKESPECIAL, stubClass, 
                                    "<init>", "(Ljava/lang/String;)V");
             constr.visitVarInsn(Opcodes.ASTORE, 2);
+
+
+            // constr.visitVarInsn(Opcodes.ALOAD, 2);
+            // constr.visitVarInsn(Opcodes.ALOAD, 0);
+            // constr.visitMethodInsn(Opcodes.INVOKEVIRTUAL, 
+            //                        stubClass, 
+            //                        "addStubObject2Heap", 
+            //                        "(Ljava/lang/Object;)V");
 
             constr.visitVarInsn(Opcodes.ALOAD, 0);
             constr.visitVarInsn(Opcodes.ALOAD, 1);

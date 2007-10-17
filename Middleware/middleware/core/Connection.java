@@ -3,18 +3,19 @@ package middleware.core;
 import middleware.transport.SendReceive;
 
 public class Connection {
-	private Short       host;
+	private String      host;
 	private SendReceive sr;
 	private int         counter = 0;
 	
-	public Connection(Short host, SendReceive sr)	{
+	public Connection(String host, SendReceive sr)	{
 		this.host = host;
 		this.sr   = sr;
 	}
 	
-	public Short getHost() {
+	public String getHost() {
 		return host;
 	}
+
 
 	public SendReceive getConnection() {
 		return sr;

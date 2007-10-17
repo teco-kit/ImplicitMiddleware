@@ -1,10 +1,8 @@
 package test;
 
-import generator.RemoteHostsConfig;
-
-import java.util.HashMap;
-
 import junit.framework.TestCase;
+
+import generator.RemoteHostsConfig;
 
 
 public class RemoteHostsConfigTest extends TestCase {
@@ -22,10 +20,8 @@ public class RemoteHostsConfigTest extends TestCase {
    }
 
    public void testIt() {
-	  HashMap<String, Short> map = new HashMap<String, Short>();
-	  map.put("Ahilis", new Short((short)1));
 
-      RemoteHostsConfig config = new RemoteHostsConfig("hosts.xml", map);
+      RemoteHostsConfig config = new RemoteHostsConfig("hosts.xml");
 
       config.writeClassToFile("../Middleware/middleware/config/RemoteConfig.class");
 

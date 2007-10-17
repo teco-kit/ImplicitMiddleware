@@ -1,15 +1,8 @@
-/************************************
- * Copyright TECO (www.teco.edu)    *
- * @author Dimitar Yordanov         *
- ************************************/
 package generator;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.Vector;
-
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.*;
 
 public class ClassGenerator {
 
@@ -18,13 +11,12 @@ public class ClassGenerator {
 
    public static void Main(String[] inputFiles,
                            String[] outputFiles,
-                           String   stubClass,
-                           Vector<String> stubClasses)
+                           String   stubClass)
    {
       int numOfClasses = inputFiles.length;
 
       DispatcherHelperWriter dspHelper =
-         new DispatcherHelperWriter(numOfClasses, stubClasses);
+         new DispatcherHelperWriter(numOfClasses);
 
       int i = 0;
       ClassGenerator dispGenerator = null;

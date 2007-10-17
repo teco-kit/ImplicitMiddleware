@@ -1,7 +1,3 @@
-/************************************
- * Copyright TECO (www.teco.edu)    *
- * @author Dimitar Yordanov         *
- ************************************/
 package edu.teco.apps.thermometer;
 
 import java.awt.event.WindowAdapter;
@@ -14,7 +10,6 @@ public class CloseHandler extends WindowAdapter {
    public CloseHandler(boolean leave) {
 	   this.leave = leave;
    }
-   
    public void windowClosing(WindowEvent e) {
       e.getWindow().dispose();
       if (leave)

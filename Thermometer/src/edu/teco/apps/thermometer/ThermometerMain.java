@@ -1,7 +1,3 @@
-/************************************
- * Copyright TECO (www.teco.edu)    *
- * @author Dimitar Yordanov         *
- ************************************/
 package edu.teco.apps.thermometer;
 
 import java.awt.BorderLayout;
@@ -16,7 +12,6 @@ import java.awt.event.ActionListener;
 public class ThermometerMain extends Frame implements TemperatureNotifiable {
 
    public static void main(String[] args) {
-	  middleware.core.DispatchServer.startServer();
       ThermometerMain mainT = new ThermometerMain();
       mainT.setTitle("Thermometer");
       mainT.setSize(300, 350);
@@ -25,15 +20,14 @@ public class ThermometerMain extends Frame implements TemperatureNotifiable {
       
       //thermoTest(mainT);
       
-//      try {
-//    	 ThermoSensor tSens = new ThermoSensor();
-//    	 while (true) {
-//    		 mainT.setTemp((int)tSens.getTemperature());
-//    		 Thread.sleep(5000);
-//    	 }
-//      } catch (Exception ignore) {  }
-
-      ThermoSensor.Main(new RemoteNotify(mainT));
+      try {
+    	 ThermoSensor tSens = new ThermoSensor();
+    	 while (true) {
+    		 mainT.setTemp((int)tSens.getTemperature());
+    		 Thread.sleep(5000);
+    	 }
+      } catch (Exception ignore) {  }
+//      ThermoSensor.Main(new RemoteNotify(mainT));
    }
    
    public void notifyMe(double grad) {
@@ -69,14 +63,8 @@ public class ThermometerMain extends Frame implements TemperatureNotifiable {
    private Menu              fMenu            = null;
    //private Menu              hMenu            = null;
    private Dialog            settingsDiag     = null;
-   //private Label tempLabel;
    
    public ThermometerMain () {
-      //System.setSecurityManager(new ExitHandlingSecurityManager());
-	  
-      //tempLabel =  new Label("Temperatur ", 0);
-	  //this.add(tempLabel);
-
       mBar            = new MenuBar();
       fMenu           = new Menu("File");
       MenuListener mL = new MenuListener();
@@ -101,8 +89,6 @@ public class ThermometerMain extends Frame implements TemperatureNotifiable {
    
    public void setTemp(int grad) {
       canvas.setTemp(grad);
-      // tempLabel.setText((new StringBuilder()).append(grad).append(" Celsius").toString());
-
    }
    
    class MenuListener implements ActionListener {
@@ -125,13 +111,4 @@ public class ThermometerMain extends Frame implements TemperatureNotifiable {
          }
       } 
    }
-   
-   class ExitHandlingSecurityManager extends SecurityManager {
-	   
-		@Override
-		public void checkExit(int arg0) {
-			//throw new SecurityException("You aren't allowed to terminate VM");
-		}
-		
-	}
 }

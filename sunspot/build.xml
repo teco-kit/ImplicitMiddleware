@@ -87,16 +87,17 @@ Microsystems, Inc. All Rights Reserved.
     -->
 
     <target name="-pre-compile">
-      <copy file="${src.dir}/middleware/config/Classes.class"
-            tofile="${build.dir}/middleware/config/Classes.class"/>
-      <copy file="${src.dir}/middleware/config/RemoteConfig.class"
-            tofile="${build.dir}/middleware/config/RemoteConfig.class"/>
-      <copy file="${src.dir}/middleware/config/ProtocolsConfig.class"
-            tofile="${build.dir}/middleware/config/ProtocolsConfig.class"/>
-      <copy file="${src.dir}/middleware/core/DispatcherHelper.class"
-            tofile="${build.dir}/middleware/core/DispatcherHelper.class"/>
-      <copy file="${src.dir}/middleware/transport/TransportFactory.class"
-            tofile="${build.dir}/middleware/transport/TransportFactory.class"/>
+       <echo>Compile start!</echo>
+       <copy file="src/middleware/core/DispatcherHelper.class"
+             tofile="build/middleware/core/DispatcherHelper.class"/>
+       <copy file="src/middleware/config/Classes.class"
+             tofile="build/middleware/config/Classes.class"/>
+       <copy file="src/middleware/config/ProtocolsConfig.class"
+             tofile="build/middleware/config/ProtocolsConfig.class"/>
+       <copy file="src/middleware/config/RemoteConfig.class"
+             tofile="build/middleware/config/RemoteConfig.class"/>
+        <copy file="src/edu/teco/apps/thermometer/RemoteNotify.class"
+           tofile="build/edu/teco/apps/thermometer/RemoteNotify.class" />
     </target>    
 
     <target name="-post-compile">

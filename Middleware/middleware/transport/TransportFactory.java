@@ -1,11 +1,11 @@
 package middleware.transport;
-//==============================
-// !!! Attention Dummy Class
-//==============================
+
 import middleware.config.ProtocolsConfig;
 import middleware.config.RemoteConfig;
-import middleware.transport.udp.UDPConnection;
-import middleware.transport.udp.UDPServer;
+//import middleware.transport.particle.ParticleClient;
+//import middleware.transport.particle.ParticleServer;
+import middleware.transport.sunspot.SunSpotConnection;
+import middleware.transport.sunspot.SunSpotServer;
 
 public class TransportFactory {
 	static RemoteConfig    hosts  = RemoteConfig.getInstance();
@@ -14,8 +14,15 @@ public class TransportFactory {
 	public static SendReceiveServer 
 	makeSendReceiveServer(String transportProtocol, String[] attributes)
 	{
-		if (transportProtocol.equals("transport.udp.UDPServer"))
-			return new UDPServer(attributes);
+		//if (transportProtocol.equals("transport.TCPServer"))
+		//	return new TCPServer(attributes);
+		//if (transportProtocol.equals("transport.particle.ParticleServer"))
+		//	return ParticleServer.getParticleServer(attributes);
+		if (transportProtocol.equals("transport.sunspot.SunSpotServer"))
+			return new SunSpotServer(attributes);
+
+		//		Handle new Protocols here
+		
 		else
 		{
 			System.err.println("Error in configuration: no such protocol" + 
@@ -24,13 +31,19 @@ public class TransportFactory {
 		}
 	}
 	
-	public static SendReceive makeSendReceive(Short hostname)
+	public static SendReceive makeSendReceive(String hostname)
 	{
+		//if (hosts.getTransportName(hostname).equals("transport.TCPClient"))
+		//	return new TCPClient(hosts.getTransportAttributes(hostname));
+		//if (hosts.getTransportName(hostname).equals("transport.particle.ParticleClient"))
+		//	return new ParticleClient(hosts.getTransportAttributes(hostname));
 		if (hosts.getTransportName(hostname).
-		      equals("transport.udp.UDPConnection"))
+		      equals("transport.sunspot.SunSpotConnection"))
 		{
-			return new UDPConnection(hosts.getTransportAttributes(hostname));
+			return new SunSpotConnection(hosts.getTransportAttributes(hostname));
 		}
+		//Handle new Protocols here
+		
 		else
 		{
 			System.err.println("Error in configuration: no such host" + hostname);

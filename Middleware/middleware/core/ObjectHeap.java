@@ -1,6 +1,7 @@
 package middleware.core;
 
 import java.util.Hashtable;
+import java.util.Vector;
 
 public class ObjectHeap {
 

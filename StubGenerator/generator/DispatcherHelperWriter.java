@@ -1,18 +1,6 @@
-/************************************
- * Copyright TECO (www.teco.edu)    *
- * @author Dimitar Yordanov         *
- ************************************/
 package generator;
 
-import java.util.Vector;
-import org.objectweb.asm.ClassAdapter;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.FieldVisitor;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
-
+import org.objectweb.asm.*;
 
 public class DispatcherHelperWriter extends ClassAdapter {
 
@@ -22,32 +10,28 @@ public class DispatcherHelperWriter extends ClassAdapter {
    private static final String objHeap    = "middleware/core/ObjectHeap";
    private static final String uIdClass   = "middleware/core/UniqueID";
 
-   private Vector<String> stubClasses  = null;
-   private MethodVisitor  methodCall   = null;
-   private ClassWriter    classWriter  = null;
-   private Label[]        cLabels      = null;
-   private Label[]        mLabels      = null;
-   private Label          cDefLabel    = null;
-   private Label          mDefLabel    = null;
-   private int            numOfMethods = 0;
-   private int            methodId     = 0;
-   private int            classId      = 0;
-   private String         className    = null;
+   private MethodVisitor methodCall   = null;
+   private ClassWriter   classWriter  = null;
+   private Label[]       cLabels      = null;
+   private Label[]       mLabels      = null;
+   private Label         cDefLabel    = null;
+   private Label         mDefLabel    = null;
+   private int           numOfMethods = 0;
+   private int           methodId     = 0;
+   private int           classId      = 0;
+   private String        className    = null;
 
-   private int            classIdPos   = 1;
-   private int            objPos       = 2;
-   private int            methodIdPos  = 3;
-   private int            stackPos     = 4;
-   private int            retStackPos  = 5;
-   private int            retValPos    = retStackPos + 1;
+   private int           classIdPos   = 1;
+   private int           objPos       = 2;
+   private int           methodIdPos  = 3;
+   private int           stackPos     = 4;
+   private int           retStackPos  = 5;
+   private int           retValPos    = retStackPos + 1;
 
-   public DispatcherHelperWriter(int numOfClasses, Vector<String> stubClasses) 
-   {
+   public DispatcherHelperWriter(int numOfClasses) {
 
       super(new ClassWriter(ClassWriter.COMPUTE_FRAMES));
       classWriter = (ClassWriter)cv;
-
-      this.stubClasses = stubClasses;
 
 
       classWriter.visit(Opcodes.V1_3,
@@ -157,26 +141,15 @@ public class DispatcherHelperWriter extends ClassAdapter {
                                     String[] exceptions               )
    {
 
-      retValPos    = retStackPos + 1;
-
       // case methodId:
       methodCall.visitLabel(mLabels[methodId++]);
 
       methodCall.visitFrame(Opcodes.F_SAME, 0, null, 0, null);
 
-      System.out.println("Method name " + name);
-      System.out.println("Method signature " + desc);
-      // inner classes are somehow compiled as methos ?
-      if (name.contains("access$") || 
-          ((access & Opcodes.ACC_PRIVATE) == Opcodes.ACC_PRIVATE))
-      {
-         methodCall.visitInsn(Opcodes.ACONST_NULL);
-         methodCall.visitInsn(Opcodes.ARETURN);
-         return null;
-      }
-
       if (name.equals("<init>"))
       {
+
+         
          methodCall.visitTypeInsn(Opcodes.NEW, stackClass);
          methodCall.visitInsn(Opcodes.DUP);
          methodCall.visitInsn(Opcodes.ICONST_4);
@@ -219,6 +192,7 @@ public class DispatcherHelperWriter extends ClassAdapter {
             methodCall.visitInsn(Opcodes.DUP);
          }
 
+         retValPos++;
          switch (returnType.getSort())
          {
             case Type.VOID:
@@ -395,8 +369,6 @@ public class DispatcherHelperWriter extends ClassAdapter {
 
       } // end if (name.equals("<init>")) {} else {}
 
-      retValPos++;
-
       methodCall.visitVarInsn(Opcodes.ALOAD, retStackPos);
       methodCall.visitInsn(Opcodes.ARETURN);
      
@@ -503,7 +475,6 @@ public class DispatcherHelperWriter extends ClassAdapter {
 
    private void popArgs(String desc, String name)
    {
-      int mStartPosition = retValPos + 1;
 
       Type[] types = Type.getArgumentTypes(desc);
       for (Type t : types)
@@ -576,8 +547,8 @@ public class DispatcherHelperWriter extends ClassAdapter {
                   // methodCall.visitVarInsn(Opcodes.ALOAD, 0);
                   // methodCall.visitFieldInsn(Opcodes.GETFIELD, dispHelp,
                   //                           "objHeap", "L" + objHeap + ";");
-                  int oidPos    = retValPos;
-                  int retObjPos = ++retValPos;
+                  int oidPos    = retValPos++;
+                  int retObjPos = retValPos;
                   methodCall.visitVarInsn(Opcodes.ALOAD, stackPos);
                   methodCall.visitMethodInsn(Opcodes.INVOKEVIRTUAL, stackClass,
                                              "popInt"             , "()I");
@@ -587,41 +558,33 @@ public class DispatcherHelperWriter extends ClassAdapter {
                                              stubClass,
                                              "getObjectOrStub",
                                              "(I)Ljava/lang/Object;");
-                  System.out.println("DIMENSIONS " + t.getDimensions());
-                  System.out.println("DIMENSIONS " + t.getInternalName());
-                  if (t.getSort() == Type.ARRAY)
-                     methodCall.visitTypeInsn( Opcodes.CHECKCAST, 
-                                               "[" + t.getInternalName() + ";");
-                  else
-                     methodCall.visitTypeInsn( Opcodes.CHECKCAST, 
-                                               t.getInternalName() );
+                  methodCall.visitTypeInsn( Opcodes.CHECKCAST, 
+                                            t.getInternalName() );
                   methodCall.visitVarInsn(Opcodes.ASTORE, retObjPos);
 
-                  if (stubClasses.contains(t.getInternalName()))
-                  {
-                     Label l1 = new Label();
-                     Label l2 = new Label();
 
-                     methodCall.visitVarInsn(Opcodes.ALOAD, retObjPos);
-                     methodCall.visitJumpInsn(Opcodes.IFNONNULL, l1);
-                     // if null
-                     methodCall.visitLabel(l2);
-                     methodCall.visitTypeInsn(Opcodes.NEW, t.getInternalName());
-                     methodCall.visitInsn(Opcodes.DUP);
+                  Label l1 = new Label();
+                  Label l2 = new Label();
 
-                     methodCall.visitTypeInsn(Opcodes.NEW, uIdClass);
-                     methodCall.visitInsn(Opcodes.DUP);
-                     methodCall.visitVarInsn(Opcodes.ILOAD, oidPos);
-                     methodCall.visitMethodInsn(Opcodes.INVOKESPECIAL,
-                                                uIdClass,
-                                                "<init>", "(I)V");
-                     methodCall.visitMethodInsn(Opcodes.INVOKESPECIAL, t.getInternalName(),
-                                                "<init>"             ,
-                                                "(L" +  uIdClass + ";)V");
-                     methodCall.visitVarInsn(Opcodes.ASTORE, retObjPos);
-                     // if not null
-                     methodCall.visitLabel(l1);
-                  }
+                  methodCall.visitVarInsn(Opcodes.ALOAD, retObjPos);
+                  methodCall.visitJumpInsn(Opcodes.IFNONNULL, l1);
+                  // if null
+                  methodCall.visitLabel(l2);
+                  methodCall.visitTypeInsn(Opcodes.NEW, t.getInternalName());
+                  methodCall.visitInsn(Opcodes.DUP);
+
+                  methodCall.visitTypeInsn(Opcodes.NEW, uIdClass);
+                  methodCall.visitInsn(Opcodes.DUP);
+                  methodCall.visitVarInsn(Opcodes.ILOAD, oidPos);
+                  methodCall.visitMethodInsn(Opcodes.INVOKESPECIAL,
+                                             uIdClass,
+                                             "<init>", "(I)V");
+                  methodCall.visitMethodInsn(Opcodes.INVOKESPECIAL, t.getInternalName(),
+                                             "<init>"             ,
+                                             "(L" +  uIdClass + ";)V");
+                  methodCall.visitVarInsn(Opcodes.ASTORE, retObjPos);
+                  // if not null
+                  methodCall.visitLabel(l1);
 
                }
                break;
@@ -635,7 +598,7 @@ public class DispatcherHelperWriter extends ClassAdapter {
          methodCall.visitInsn(Opcodes.DUP);
       }
 
-      int position = mStartPosition;
+      int position = retValPos;
 
       for (Type t : types)
       {
@@ -659,21 +622,19 @@ public class DispatcherHelperWriter extends ClassAdapter {
                methodCall.visitVarInsn(Opcodes.ILOAD, position);
                break;
             case Type.LONG:
-               methodCall.visitVarInsn(Opcodes.LLOAD, position++);
+               methodCall.visitVarInsn(Opcodes.LLOAD, --position);
                break;
             case Type.FLOAT:
                methodCall.visitVarInsn(Opcodes.FLOAD, position);
                break;
             case Type.DOUBLE:
-               methodCall.visitVarInsn(Opcodes.DLOAD, position++);
+               methodCall.visitVarInsn(Opcodes.DLOAD, --position);
                break;
             default:
-               // If we increse retValPos above we have to increase
-               // position here!! 
-               methodCall.visitVarInsn(Opcodes.ALOAD, ++position);
+               methodCall.visitVarInsn(Opcodes.ALOAD, position);
                break;
          } // end switch
-         position++;
+         position--;
 
       }
    }

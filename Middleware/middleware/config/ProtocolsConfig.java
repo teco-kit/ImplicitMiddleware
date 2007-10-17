@@ -4,7 +4,7 @@ import java.util.Hashtable;
 
 
 /**
- * Dummy Class
+ * Dummy
  */
 public class ProtocolsConfig {
    private static ProtocolsConfig instance = null;
@@ -18,7 +18,7 @@ public class ProtocolsConfig {
    {
    }
 
-   public Short getHostname() {
+   public String getHostname() {
       return null;
    }
 

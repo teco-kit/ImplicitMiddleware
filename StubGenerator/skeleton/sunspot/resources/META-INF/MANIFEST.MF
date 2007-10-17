@@ -1,7 +1,0 @@
-MIDlet-Name: RunServer
-MIDlet-Version: 1.0.0
-MIDlet-Vendor: TECO EDU
-MIDlet-1: , , middleware.core.RunServer
-MicroEdition-Profile: IMP-1.0
-MicroEdition-Configuration: CLDC-1.1
-

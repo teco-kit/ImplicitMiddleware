@@ -1,7 +1,3 @@
-/************************************
- * Copyright TECO (www.teco.edu)    *
- * @author Dimitar Yordanov         *
- ************************************/
 package edu.teco.apps.thermometer;
 
 import java.awt.BorderLayout;
@@ -22,7 +18,7 @@ public class SettingsDiag extends Dialog {
 	private ThermoCanvas      thermo           = null;
 
 	
-	public SettingsDiag(Window parent, ThermoCanvas thermo) {
+	SettingsDiag(Window parent, ThermoCanvas thermo) {
 		super(parent, "Settings");
 	
 		this.setSize(250, 100);
