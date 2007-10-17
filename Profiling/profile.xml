@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <machines>
+    <m1>
+      <class name="Class_A" />
+      <class name="MainClass" />
+      <stub name="Class_B" />
+    </m1>
+    <m2>
+      <class name="Class_A" />
+    </m2>
+  </machines>
+  <classes>
+    <Class_A host="m1" />
+    <MainClass host="m1" />
+    <Class_B host="m2" />
+  </classes>
+</root>
+

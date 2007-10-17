@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+   <name hostname="pc"/>
+   <transport>
+      <transport.sunspot.SunSpotServer
+         MAC="0014.4F01.0000.0313" port="102" />
+      <transport.udp.UDPServer
+         IP="127.0.0.1" Port="10003" />
+   </transport>
+</config>
+
