@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<config>
-   <name hostname="m1"/>
-   <transport>
-      <transport.sunspot.SunSpotServer
-         MAC="0014.4F01.0000.0313" port="102" />
-   </transport>
-</config>
-

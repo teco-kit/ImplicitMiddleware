@@ -46,17 +46,19 @@ public class MethodCallAnalyzer {
 		initMachines();
 		makeCallGraph();
 		makeStatistics();
-		Map<ClassDesc, Machine> bestDistri = generateBestDistribution();
-		Iterator<ClassDesc> it = bestDistri.keySet().iterator();
+		//Map<ClassDesc, Machine> bestDistri = generateBestDistribution();
+		//Iterator<ClassDesc> it = bestDistri.keySet().iterator();
+		/*
 		while (it.hasNext())
 		{
 			ClassDesc cd = it.next();
 			System.out.println(cd.getName() + " ! " + bestDistri.get(cd).getMachineID());
 		}
+		*/
 		printClassStatistics();
-		StubMaker sm = new StubMaker(bestDistri);
-		sm.outputXmlFile();
-		sm.makeRepartition();
+		//StubMaker sm = new StubMaker(bestDistri);
+		//sm.outputXmlFile();
+		//sm.makeRepartition();
 		
 	}
 
@@ -101,7 +103,7 @@ public class MethodCallAnalyzer {
 	public void makeStatistics() 
 	{
 		Iterator<ThreadDesc> it = threads.values().iterator();
-		System.out.println("Class Call statistics");
+		//System.out.println("Class Call statistics");
 		while (it.hasNext())
 		{
 			ThreadDesc td = it.next();
@@ -206,6 +208,7 @@ public class MethodCallAnalyzer {
 		
 		List<Element> callElements = trace.getContent(methodEntryFilter.or(methodExitFilter));
 		Iterator<Element> it = callElements.iterator();
+		
 		while (it.hasNext())
 		{
 			Element c = it.next();
@@ -258,20 +261,71 @@ public class MethodCallAnalyzer {
 	
 	public void printClassStatistics()
 	{
-		Iterator<ClassDesc> it = classes.values().iterator();
+		
+		int i=0;
+		System.out.print("set CLASSES:= {");
+		
+		Iterator<ClassDesc> it;
+		it = classes.values().iterator();
+		
+		while (it.hasNext()){
+			ClassDesc cd = it.next();
+			if(cd.getClassStatistics().getTotalTime()==0 && cd.getClassStatistics().getCalledClasses().isEmpty())
+			{
+			 it.remove();
+			 continue;
+			}		
+			System.out.print("\""+cd.getName()+"\"");
+			if(it.hasNext())System.out.print(",");
+		}
+		System.out.println("};");
+		
+		
+		System.out.print("param exec[CLASSES]:=");
+		it = classes.values().iterator();	
+		while (it.hasNext()){
+			ClassDesc cd = it.next();	
+			System.out.print("<\""+cd.getName()  +  "\"> " + (cd.getClassStatistics().getTotalTime() *1000));
+			if(it.hasNext())System.out.print(",");
+		}
+		System.out.println(";");
+		
+		System.out.println("set CALLS:= CLASSES*CLASSES;");
+		System.out.print("param comm[CALLS]:=\n\t|");
+		
+		it = classes.values().iterator();	
+		while (it.hasNext()){
+			ClassDesc cd = it.next();	
+			System.out.print("\""+cd.getName()  + "\"\t");
+			if(it.hasNext())System.out.print(",");
+		}	
+		System.out.println("|");
+		
+		it=classes.values().iterator();
+		
 		while (it.hasNext())
 		{
-			ClassDesc cd = it.next();
-			System.out.println(cd.getName() + " calls: " + cd.getClassStatistics().getTotalCalls() + " time: " + cd.getClassStatistics().getTotalTime());
-			Iterator<ClassDesc> childrenIt = cd.getClassStatistics().getCalledClasses().keySet().iterator();
-			while (childrenIt.hasNext())
+			ClassDesc cd = it.next();	
+			Iterator<ClassDesc> it2 = classes.values().iterator();
+			System.out.print("|\""+cd.getName()  + "\"\t|");
+
+			while (it2.hasNext())
 			{
-				ClassDesc child = childrenIt.next();
-				ClassStatistics.ClassCall cc = cd.getClassStatistics().getCalledClasses().get(child);
-				System.out.println("        " + child.getName() + " calls: " + cc.getNumber() + " time: " + cc.getTotalCallTime());
-				
+				ClassDesc cd2 = it2.next();
+				if(cd.getClassStatistics().getCalledClasses().containsKey(cd2))
+				{
+					ClassStatistics.ClassCall cc = cd.getClassStatistics().getCalledClasses().get(cd2);
+					System.out.print("\t"+cc.getNumber());
+				}
+				else
+				{ 
+					System.out.print("\t"+0);
+				}
+				if(it2.hasNext())System.out.print(",");
 			}
+			System.out.print("|\n");
 		}
+		System.out.print(";");
 	}
 
 }
